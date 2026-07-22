@@ -23,6 +23,8 @@ export interface IBuyer {
     address: string;
 }
 
+export type TBuyerValidation = Partial<Record<keyof IBuyer, string>>;
+
 export interface IProductList {
     total: number;
     items: IProduct[];

@@ -1,7 +1,12 @@
-import { IBuyer } from '../../types';
+import { IBuyer, TBuyerValidation } from '../../types';
 
 export class BuyerModel {
-  protected data: Partial<IBuyer> = {};
+  protected data: IBuyer = {
+    payment: 'online',
+    email: '',
+    phone: '',
+    address: ''
+  };
 
   setData(data: Partial<IBuyer>): void {
     this.data = {
@@ -10,16 +15,22 @@ export class BuyerModel {
     };
   }
 
-  getData(): Partial<IBuyer> {
+  getData(): IBuyer {
     return this.data;
   }
 
   clear(): void {
-    this.data = {};
+    this.data = {
+      payment: 'online',
+      email: '',
+      phone: '',
+      address: ''
+    };
   }
 
-  validate(): Partial<Record<keyof IBuyer, string>> {
-    const errors: Partial<Record<keyof IBuyer, string>> = {};
+  validate(): TBuyerValidation {
+
+    const errors: TBuyerValidation = {};
 
     if (!this.data.payment) {
       errors.payment = 'Не выбран способ оплаты';
